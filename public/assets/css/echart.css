@@ -25,26 +25,6 @@
     justify-content: center;
 }
 
-.panel .startStop {
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
-}
-
-.panel .startStop #startButton {
-    background-color: #3be8b0;
-    border: none;
-    color: white;
-    padding: .5rem;
-}
-
-.panel .startStop #stopButton {
-    background-color: #fc636b;
-    border: none;
-    color: white;
-    padding: .5rem;
-}
-
 .overview .gauge {
     display: flex;
     justify-content: center;
@@ -107,5 +87,4 @@
 .gauge {
     display: flex;
     justify-content: center;
-    height: 400px;
 }

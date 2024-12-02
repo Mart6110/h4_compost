@@ -46,12 +46,13 @@ function renderGaugeChart($chartId, $title, $seriesData, $color, $min, $max, $un
                         valueAnimation: true,
                         formatter: function(value) {
                             return value + ' ' + '<?php echo $unit; ?>';
-                        }
+                        },
+                        fontSize: 20
                     },
                     data: [{
                         value: <?php echo $value; ?>,
                         itemStyle: {
-                            color: '<?php echo $color; ?>'
+                            color: '<?php echo $color; ?>',
                         }
                     }]
                 }]
