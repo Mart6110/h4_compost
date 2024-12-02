@@ -1,6 +1,7 @@
 <?php
 // Include the gauge chart rendering function
 require_once '../app/Views/gauge.php';
+require_once '../app/Views/power_button.php';
 
 $powerBool = true;
 
@@ -61,24 +62,6 @@ $gauges = [
             echo "<p>Error rendering gauge chart for '{$gauge['title']}': " . $e->getMessage() . "</p>";
         }
     }
+    renderPowerButton($powerBool);
     ?>
-    <div class="widget btn" id="powerButton">
-        <i class="fa-solid fa-power-off" style="color: <?= $powerBool ? '#3be8b0' : '#fc636b'; ?>"></i>
-    </div>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const powerButton = document.getElementById('powerButton');
-        const powerIcon = powerButton.querySelector('i');
-        let powerState = <?= json_encode($powerBool); ?>; // Initial state from PHP
-
-        powerButton.addEventListener('click', function() {
-            // Toggle the power state
-            powerState = !powerState;
-
-            // Update the button's color
-            powerIcon.style.color = powerState ? '#3be8b0' : '#fc636b';
-        });
-    });
-</script>

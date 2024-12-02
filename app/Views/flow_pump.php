@@ -2,6 +2,7 @@
 // Include the chart and gauge rendering functions
 require_once '../app/Views/chart.php';
 require_once '../app/Views/gauge.php';
+require_once '../app/Views/power_button.php';
 
 $powerBool = true;
 
@@ -98,18 +99,6 @@ $gauges = [
             echo "<p>Error rendering gauge '{$gauge['title']}': " . $e->getMessage() . "</p>";
         }
     }
-    if ($powerBool == true) {
-    ?>
-        <div class="widget btn">
-            <i class="fa-solid fa-power-off" style="color: #3be8b0"></i>
-        </div>
-    <?php
-    } else {
-    ?>
-        <div class="widget btn">
-            <i class="fa-solid fa-power-off" style="color: #fc636b"></i>
-        </div>
-    <?php
-    }
+    renderPowerButton($powerBool);
     ?>
 </div>

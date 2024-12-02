@@ -2,6 +2,14 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+.widget.btn:hover i {
+    filter: brightness(1.2);
+}
+
+#powerButton i {
+    transition: filter 0.2s ease;
+}
+
 .panel {
     grid-column: 1 / 13;
     display: grid;
