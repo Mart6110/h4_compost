@@ -4,8 +4,12 @@ $powerBool = true;
 function renderPowerButton($powerBool = true)
 {
 ?>
-    <div class="widget btn" id="powerButton">
-        <i class="fa-solid fa-power-off" style="color: <?= $powerBool ? '#3be8b0' : '#fc636b'; ?>"></i>
+    <div class="widget" id="powerButton">
+        <h1>Pump power switch</h1>
+        <div class="switch-container standby">
+            <button id="OFF" class="<?= !$powerBool ? 'active' : '' ?>">OFF</button>
+            <button id="ON" class="<?= !$powerBool ? 'active' : '' ?>">ON</button>
+        </div>
     </div>
 <?php
 }
@@ -13,28 +17,31 @@ function renderPowerButton($powerBool = true)
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const powerButton = document.getElementById('powerButton');
-        const powerIcon = powerButton.querySelector('i');
-        
-        // Ensure the PHP value is correctly passed into JavaScript
+        const offButton = document.getElementById('OFF');
+        const onButton = document.getElementById('ON');
+
+        // Ensure the PHP value is passed into JavaScript
         let powerState = <?php echo json_encode($powerBool); ?>;
 
-        powerButton.addEventListener('click', function() {
-            // Toggle the power state
-            powerState = !powerState;
+        // Update the button state based on the power state
+        function updatePowerState() {
+            offButton.classList.toggle('active', !powerState);
+            onButton.classList.toggle('active', powerState);
+        }
 
-            // Update the button's color
-            powerIcon.style.color = powerState ? '#3be8b0' : '#fc636b';
-
-            // Optionally store the state for future reference (e.g., in localStorage)
-            // localStorage.setItem('powerState', powerState);
+        // Event listener for OFF button
+        offButton.addEventListener('click', function() {
+            powerState = false;
+            updatePowerState();
         });
 
-        powerButton.addEventListener('mouseenter', function() {
-            powerIcon.style.filter = 'brightness(1.2)';
+        // Event listener for ON button
+        onButton.addEventListener('click', function() {
+            powerState = true;
+            updatePowerState();
         });
 
-        powerButton.addEventListener('mouseleave', function() {
-            powerIcon.style.filter = 'brightness(1)';
-        });
+        // Initial power state update
+        updatePowerState();
     });
 </script>

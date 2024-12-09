@@ -80,6 +80,9 @@ function renderChart($chartId, $chartType, $title, $xAxisData, $seriesData, $has
                     },
                     tooltip: {
                         trigger: 'axis',
+                        axisPointer: {
+                            type: 'shadow'
+                        },
                         valueFormatter: function(value) {
                             return value + ' ' + '<?php echo $unit ?>';
                         }
